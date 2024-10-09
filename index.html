@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Love</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            cursor: default; /* Cursor normal ya que no hay interacción visual */
+        }
+
+        body {
+            background: url('fluttershy.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .playText {
+            color: white; /* Color del texto */
+            font-size: 3em; /* Tamaño de la fuente */
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            font-family: Arial, sans-serif;
+            cursor: pointer; /* Cursor de puntero para indicar que es clickeable */
+            font-weight: bold; /* Grosor de la fuente más fuerte */
+        }
+
+        audio {
+            display: none; /* Oculta el reproductor de música */
+        }
+    </style>
+</head>
+<body>
+    <span id="playText" class="playText">Virtual Love</span>
+    
+    <audio id="music" loop>
+        <source src="virtual_love.mp3" type="audio/mpeg">
+        Tu navegador no soporta la reproducción automática de audio.
+    </audio>
+
+    <script>
+        // Función para reproducir música
+        function playMusic() {
+            const music = document.getElementById('music');
+            music.play();
+
+            // Eliminar la línea que cambia el texto
+            // const playText = document.getElementById('playText');
+            // playText.innerText = "¡Reproduciendo!";
+            playText.style.cursor = 'default'; // Cambia el cursor a default
+            playText.onclick = null; // Elimina la función de clic
+        }
+
+        // Reproduce la música al hacer clic en el texto o al presionar "Enter"
+        document.getElementById('playText').addEventListener('click', playMusic);
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                playMusic();
+            }
+        });
+    </script>
+</body>
+</html>
